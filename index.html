@@ -40,8 +40,7 @@ const db = getDatabase(app);
 
 
 document.getElementById("submit").addEventListener('click',function(e){
-    // e.preventDefault();
-    alert("alert");
+    e.preventDefault();
     set(ref(db, 'modelnames/'+ document.getElementById("modelname").value),
     {
      modelnamedb: document.getElementById("modelname").value,
