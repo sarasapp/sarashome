@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Final</title>
 </head>
-<body>
-    <input type="text" value="" id="modelname" required>
-    <input type="text" value="" id="modellink" required>
-    <input type="text" value="" id="modeldescription" required>
-
-    <input type="submit" value="submit" class="sub" id="submit">
-
+<body style="text-align: center; background-color:coral">
+    <div style="
+    max-width:fit-content;
+    margin:auto;
+    align-items:center;
+    justify-content:center;
+	max-height:fit-content; background-color: rgb(255, 255, 255); border-radius:25px">
+    <input type="text" value="" id="modelname" placeholder="Model Name" style="padding:5px; margin: 10px; border-radius:10px; border: 1px solid coral;" required>
+    <br>
+    <input type="text" value="" id="modellink" placeholder="Model PNG Link" style="padding:5px; margin: 10px; border-radius:10px; border: 1px solid coral;" required>
+    <br>
+    <input type="text" value="" id="modeldescription" placeholder="Model Description" style="padding:5px; margin: 10px; border-radius:10px; border: 1px solid coral;" required>
+    <br>
+    <input width="max-content" type="submit" value="submit" class="sub" style=" padding:5px; margin: 10px; border-radius:10px; border: 1px solid coral;" id="submit">
+    </div>
     <script type = "module">
 
         // Import the functions you need from the SDKs you need
@@ -38,16 +46,26 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 
-
 document.getElementById("submit").addEventListener('click',function(e){
     e.preventDefault();
-    set(ref(db, 'modelnames/'+ document.getElementById("modelname").value),
-    {
-     modelnamedb: document.getElementById("modelname").value,
-     modelimglinkdb: document.getElementById("modellink").value,
-     modeldescriptiondb: document.getElementById("modeldescription").value
-    });
-    alert("Data Send Successfully");
+    
+    var x = document.getElementById("modelname").value;
+    var y = document.getElementById("modellink").value;
+    var z = document.getElementById("modeldescription").value;
+    if (x == "" || y == "" || z == "") {
+      alert("Required Data must be filled out");
+      return false;
+    }
+    else{
+        set(ref(db, 'modelnames/'+ document.getElementById("modelname").value),
+        {
+         modelnamedb: document.getElementById("modelname").value,
+         modelimglinkdb: document.getElementById("modellink").value,
+         modeldescriptiondb: document.getElementById("modeldescription").value
+        });
+        alert("Data Send Successfully");   
+    }
+    
 })
     </script>
 
